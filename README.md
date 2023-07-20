@@ -6,6 +6,16 @@
 </p>
 
 
+Install below
+```
+pip install flask python-dotenv
+
+pip install requests
+
+pip install flask-cors
+
+```
+
 This integration uses the JavaScript SDK to accept Blik payments
 
 
