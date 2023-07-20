@@ -1,8 +1,12 @@
 import os
+from dotenv import load_dotenv
 
-NODE_ENV = "development" #os.getenv("NODE_ENV")
-CLIENT_ID = "AfO8JyqOwNtRMq-3X9jr583UkVF10hxeG9Ifku6354w4Xh6eNOSClKl_6lLGi8FEDxseWsDwd9TdmGFG" #os.getenv("CLIENT_ID")
-CLIENT_SECRET = "EBv2wZGG1L46fHNC7AZJcq_De-OqJrEjRarQeBiLnHBIoILGiNfgphPnxrwMCNIVSj_xpMQed1bHpVMI" #os.getenv("CLIENT_SECRET")
+# Load .env file
+load_dotenv()
+
+NODE_ENV = os.getenv("NODE_ENV")
+CLIENT_ID = os.getenv("CLIENT_ID")
+CLIENT_SECRET = os.getenv("CLIENT_SECRET")
 
 isProd = NODE_ENV == "development"
 

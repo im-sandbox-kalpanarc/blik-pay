@@ -2,10 +2,10 @@ import os
 import requests
 from flask import Flask, request, jsonify, render_template
 from pathlib import Path
+from config import PAYPAL_API_BASE, CLIENT_ID, CLIENT_SECRET
 import webbrowser
 
-app = Flask(__name__)
-app = Flask(__name__, static_url_path="/static", static_folder="client")
+app = Flask(__name__, template_folder="templates")
 
 # Load environment variables from .env file
 from dotenv import load_dotenv
@@ -16,7 +16,6 @@ WEBHOOK_ID = "YOUR_WEBHOOK_ID"  # Replace with your actual webhook ID
 
 @app.route("/")
 def index():
-    index_path = Path(__file__).parent.parent / "client" / "index.html"
     return render_template("index.html")
 
 @app.route("/capture/<string:orderId>", methods=["POST"])
@@ -67,10 +66,7 @@ def webhook():
 
     return "", 200
 
-def get_access_token():
-    # Replace these with your actual CLIENT_ID and CLIENT_SECRET
-    CLIENT_ID = "AfO8JyqOwNtRMq-3X9jr583UkVF10hxeG9Ifku6354w4Xh6eNOSClKl_6lLGi8FEDxseWsDwd9TdmGFG" #os.environ.get("CLIENT_ID")
-    CLIENT_SECRET = "EBv2wZGG1L46fHNC7AZJcq_De-OqJrEjRarQeBiLnHBIoILGiNfgphPnxrwMCNIVSj_xpMQed1bHpVMI" #os.environ.get("CLIENT_SECRET")
+def get_access_token():   
 
     data = {
         "grant_type": "client_credentials",
@@ -115,4 +111,4 @@ def capture_order(orderId, access_token):
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8080))
     webbrowser.open(f"http://localhost:{port}")
-    app.run(host="0.0.0.0", port=port)
+    app.run(port=port)
