@@ -43,7 +43,10 @@
         "ms-vscode.vscode-typescript"
       ],
       "settings": {
-        "git.openRepositoryInParentFolders": "always"
+        "git.openRepositoryInParentFolders": "always",
+        "files.exclude": {
+          "**/.devcontainer": true
+        }
       }
     }
   }
